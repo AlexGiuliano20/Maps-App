@@ -43,6 +43,8 @@ export class SearchResultsComponent {
   directions(place: Feature) {
     if (!this._placesService.useLocation) throw Error('No hay userLocation');
 
+    this._placesService.deletePlaces();
+    
     const start = this._placesService.useLocation!;
     const end = place.center as [number, number];
 
