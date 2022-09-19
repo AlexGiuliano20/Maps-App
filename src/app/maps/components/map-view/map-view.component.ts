@@ -30,7 +30,7 @@ export class MapViewComponent implements AfterViewInit {
       throw Error('No hay placesService.userLocation');
     const map = new Map({
       container: this.mapDivElement.nativeElement, // container ID
-      style: 'mapbox://styles/mapbox/light-v10', // style URL
+      style: 'mapbox://styles/mapbox/streets-v11', // style URL
       center: this._placesService.useLocation, // starting position [lng, lat]
       zoom: 12, // starting zoom
     });
