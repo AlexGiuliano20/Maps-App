@@ -19,8 +19,8 @@ export class DirectionsApiClient extends HttpClient {
     return super.get<T>(url, {
       params: {
         alternatives: false,
-        geomtries: 'geojson',
-        languaje: 'es',
+        geometries: 'geojson',
+        language: 'es',
         overview: 'simplified',
         steps: false,
         access_token: environment.apiKey,
