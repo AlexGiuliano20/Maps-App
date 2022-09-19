@@ -1,16 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Feature, PlacesResponse } from '../interfaces/places.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlacesService {
   public useLocation?: [number, number];
+  public isLoadingPlaces: boolean = false;
+  public places: Feature[] = [];
 
   get isUserLocationReady(): boolean {
     return !!this.useLocation;
   }
 
-  constructor() {
+  constructor(private _http: HttpClient) {
     this.userLocation();
   }
 
@@ -28,5 +32,20 @@ export class PlacesService {
         }
       );
     });
+  }
+
+  placesByQuery(query: string = '') {
+    //todo: evaluar cuando el query es nulo
+    this.isLoadingPlaces = true;
+
+    this._http
+      .get<PlacesResponse>(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?limit=5&proximity=-73.9010722925683%2C40.74411389852324&types=place%2Cpostcode%2Caddress&access_token=pk.eyJ1IjoiZHJ1LWN1cnJ5IiwiYSI6ImNsODkwcDhtejAyOWk0MXFlOHI2NTFwbXEifQ.MgeucxkQx4ZFfDsyj_F2ng`
+      )
+      .subscribe((res) => {
+        console.log(res.features);
+        this.isLoadingPlaces = false;
+        this.places = res.features;
+      });
   }
 }
