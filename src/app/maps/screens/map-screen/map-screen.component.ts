@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PlacesService } from '../../services';
 
 @Component({
@@ -6,8 +6,10 @@ import { PlacesService } from '../../services';
   templateUrl: './map-screen.component.html',
   styles: [],
 })
-export class MapScreenComponent implements OnInit {
+export class MapScreenComponent {
   constructor(private _placesService: PlacesService) {}
 
-  ngOnInit(): void {}
+  get isUserLocationReady() {
+    return this._placesService.isUserLocationReady;
+  }
 }

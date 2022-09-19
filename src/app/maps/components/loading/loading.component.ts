@@ -1,0 +1,24 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-loading',
+  templateUrl: './loading.component.html',
+  styles: [
+    `
+      .loading-map {
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        position: fixed;
+        height: 100vh;
+        right: 0;
+        top: 0;
+        width: 100vw;
+      }
+    `,
+  ],
+})
+export class LoadingComponent implements OnInit {
+  constructor() {}
+
+  ngOnInit(): void {}
+}
